@@ -1,0 +1,28 @@
+image:
+  repository: fluent/fluentd-kubernetes-daemonset
+  tag: v1.3.2-debian-s3
+  pullPolicy: IfNotPresent
+
+s3: {}
+
+env: {}
+
+annotations: {}
+
+podAnnotations: {}
+
+updateStrategy:
+  type: RollingUpdate
+
+resources: {}
+
+livenessProbe:
+  enabled: true
+
+nodeSelector: {}
+
+tolerations: {}
+
+serviceAccount:
+  create: true
+  name:
