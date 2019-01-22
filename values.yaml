@@ -26,3 +26,6 @@ tolerations: {}
 serviceAccount:
   create: true
   name:
+
+syslog:
+  enabled: true

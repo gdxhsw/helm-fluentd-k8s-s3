@@ -1,0 +1,13 @@
+{{- if and .Values.syslog.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fluentd-k8s-s3.fullname" . }}-conf
+  labels:
+    app.kubernetes.io/name: {{ include "fluentd-k8s-s3.name" . }}
+    helm.sh/chart: {{ include "fluentd-k8s-s3.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  {{- (.Files.Glob "conf.d/*.conf").AsConfig | nindent 2 }}
+{{- end }}
