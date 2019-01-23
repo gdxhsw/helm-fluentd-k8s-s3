@@ -9,9 +9,8 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: Reconcile
-  annotations:
-    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
 {{- if .Values.annotations }}
+  annotations:
 {{ toYaml .Values.annotations | indent 4 }}
 {{- end }}
 spec:
@@ -33,6 +32,7 @@ spec:
       # supports critical pod annotation based priority scheme.
       # Note that this does not guarantee admission on the nodes (#40573).
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         scheduler.alpha.kubernetes.io/critical-pod: ''
 {{- if .Values.podAnnotations }}
 {{ toYaml .Values.podAnnotations | indent 8 }}
